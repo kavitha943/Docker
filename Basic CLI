@@ -1,0 +1,76 @@
+BASIC Docker CLI commands:
+1.DOCKER version and info 
+docker --version : displays the current docker version installed.
+docker info: Provides detailed information about the Docker installation, such as number of containers, images, and system settings.
+
+2. Working with Docker Images
+Images are the foundation of containers. You can download, list, and remove Docker images using the following commands.
+docker pull: Downloads an image from a Docker registry (usually Docker Hub).
+docker images: Lists all the Docker images on your system.
+docker rmi: Removes a Docker image.
+
+3. Working with Containers
+Containers are instances of Docker images. These commands manage the lifecycle of containers.
+
+docker run: Runs a container from an image. By default, it also pulls the image if it's not available locally.
+docker run -d -p 80:80 nginx:latest
+-d: Runs the container in detached mode (in the background).
+-p: Maps host ports to container ports.
+docker ps: Lists all running containers.
+docker ps -a: Lists all containers (including stopped containers).
+docker stop: Stops a running container.
+docker stop <container_name_or_id>
+docker start: Starts a stopped container.
+docker start <container_name_or_id>
+docker rm: Removes a stopped container.
+docker rm <container_name_or_id>
+
+4. Inspecting and Accessing Containers
+docker logs: View the logs of a running or stopped container.
+docker logs <container_name_or_id>
+docker exec: Runs a command inside a running container. This is often used to open a shell inside the container.
+docker exec -it <container_name_or_id> /bin/bash
+-it: Makes the container interactive and opens a pseudo-terminal.
+docker inspect: Displays detailed information about a container or an image (in JSON format).
+docker inspect <container_name_or_id>
+
+5. Managing Docker Volumes
+Volumes are used to persist data outside the container’s lifecycle.
+
+docker volume create: Creates a new volume.
+docker volume create my-volume
+docker volume ls: Lists all Docker volumes.
+docker volume ls
+docker volume rm: Removes a volume.
+docker volume rm my-volume
+
+6. Docker Networks
+By default, Docker containers run on a bridge network, but you can create custom networks.
+
+docker network ls: Lists all networks available in Docker.
+docker network ls
+docker network create: Creates a new network.
+docker network create my-network
+docker network rm: Removes a network.
+docker network rm my-network
+docker network connect: Connects a running container to a network.
+docker network connect my-network <container_name_or_id>
+
+7. Cleaning Up Docker Resources
+Over time, Docker can accumulate unused containers, images, volumes, and networks. These commands help you clean up.
+
+docker system prune: Removes all stopped containers, dangling images, unused networks, and build caches.
+docker system prune
+docker container prune: Removes all stopped containers.
+docker container prune
+docker image prune: Removes dangling images (images that are no longer referenced by any container).
+docker image prune
+docker volume prune: Removes all unused volumes.
+docker volume prune
+
+8. Docker Build
+To create your own Docker images, you can use Dockerfiles and the docker build command.
+
+docker build: Builds a Docker image from a Dockerfile in the current directory.
+docker build -t my-image:latest .
+-t: Tags the image with a name and optionally a version (or latest).
